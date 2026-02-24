@@ -8,8 +8,6 @@ resource "aws_instance" "roboshop_instance" {
   tags = {
     Name    = "terraform"
     Project = "Roboshop"
-
-
     
   }
 }
