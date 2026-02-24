@@ -13,7 +13,6 @@ resource "aws_instance" "roboshop_instance" {
   }
 }
 
-
 resource "aws_security_group" "Security_groups" {
   name        = "allow_all_roboshop" # this is for AWS account
   description = "Allow TLS inbound traffic"
