@@ -1,16 +1,14 @@
 resource "aws_instance" "roboshop_instance" {
-  for_each      = toset(var.instances)  # no need to remember for each synatx just search in google for syntax
   ami           = "ami-0220d79f3f480ecf5"
-  #instance_type = each.value  # no need to remember for each synatx just search in google for syntax
-  instance_type = "t3.micro" # because we are not storing anything on map its not key pair value
+  instance_type = "t3.micro"
   # Reference the security group ID here
   vpc_security_group_ids = [aws_security_group.Security_groups.id]
 
   # Optional: Add tags to the instance for identification
-  tags = {
-    Name    =  each.key                # no need to remember for each synatx just search in google for syntax
-    Project = "Roboshop"
-  }
+  tags = merge(
+    var.common_tags,
+    var.ec2_tags
+  )                             # merge function will overide the value of previous map value
 }
 
 
@@ -36,7 +34,9 @@ resource "aws_security_group" "Security_groups" {
   
   }
 
-  tags = {
-    Name = "terraform_testing_sg"
-  }
+  tags = merge(
+    var.common_tags,
+    var.sg_tags
+
+  )
 }
