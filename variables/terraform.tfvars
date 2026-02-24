@@ -1,0 +1,1 @@
+ins_type = "t3.small" # this will give high  prioity tah defaults
