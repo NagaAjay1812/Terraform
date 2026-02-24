@@ -1,6 +1,6 @@
 resource "aws_instance" "roboshop_instance" {
-  # count = 10 #Instead of using a fixed number like count = 10, we use the length() function so it dynamically calculates the number of instances based on the variable
-  count         = length(var.instances) #length function
+# count = 10 #Instead of using a fixed number like count = 10, we use the length() function so it dynamically calculates the number of instances based on the variable
+  count         = length(var.instances)       #length function
   ami           = "ami-0220d79f3f480ecf5"
   instance_type = "t3.micro"
   # Reference the security group ID here
@@ -12,7 +12,6 @@ resource "aws_instance" "roboshop_instance" {
     Project = "Roboshop"
   }
 }
-
 
 resource "aws_security_group" "Security_groups" {
   name        = "allow_all_roboshop" # this is for AWS account
